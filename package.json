@@ -1,0 +1,26 @@
+{
+  "name": "fuzzy-image-enhancement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "app": "python app.py",
+    "dev": "npx tailwindcss -i ./source/input.css -o ./static/style/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marwahns/fuzzy-image-enhancement.git"
+  },
+  "author": "Marwah",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marwahns/fuzzy-image-enhancement/issues"
+  },
+  "homepage": "https://github.com/Marwahns/fuzzy-image-enhancement#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "daisyui": "^3.9.3",
+    "tailwindcss": "^3.3.3"
+  }
+}
