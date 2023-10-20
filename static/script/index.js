@@ -1,187 +1,201 @@
-$(document).ready(() => {
-    // Get references to the elements
-    const btnUploadImage = document.getElementById("btnUploadImage");
-    const hiddenInput = document.getElementById("hidden-input");
-    const loadImage = document.getElementById("load-image");
-    const clearButton = document.getElementById("clear");
-    const formImageUpload = document.getElementById("form-image-upload");
-    const mamdaniImage = document.getElementById("combined-image-mamdani");
-    const sugenoImage = document.getElementById("combined-image-sugeno");
-    const tsukamotoImage = document.getElementById("combined-image-tsukamoto");
+// Get references to the elements
+const btnUploadImage = document.getElementById('btnUploadImage');
+const hiddenInput = document.getElementById('hidden-input');
+const loadImage = document.getElementById('load-image');
 
-    function showLoadingOverlay() {
-        document.getElementById('loading-overlay').classList.remove('hidden');
-    }
+const btnEnhancement = document.getElementById('btnEnhancement')
+const loadingOverlay = document.getElementById('loading-overlay')
 
-    function hideLoadingOverlay() {
-        document.getElementById('loading-overlay').classList.add('hidden');
-    }
+const cardImageEnhancement = document.getElementById('card-image-enhancement')
+const imageEnhancement = document.querySelectorAll('.image-enhancement')
+const btnInformation = document.getElementById('btnInformation')
+const btnCalculate = document.getElementById('btnCalculate')
 
-    // Add event listener to the btnUploadImage button
-    btnUploadImage.addEventListener("click", function () {
-        hiddenInput.click(); // Trigger the click on the hidden input element
-    });
+function showLoadingOverlay() {
+    loadingOverlay.classList.remove('hidden');
+}
 
-    // Listen for changes in the file input
-    hiddenInput.addEventListener("change", function (event) {
-        const file = event.target.files[0]; // Get the selected file (first file if multiple allowed)
+function hideLoadingOverlay() {
+    loadingOverlay.classList.add('hidden');
+}
 
-        // Check if a file is selected
-        if (file) {
-            const reader = new FileReader();
+btnUploadImage.addEventListener('click', () => {
+    hiddenInput.click();
+});
 
-            // Read the file as a data URL and set the src attribute of the loadImage element
-            reader.addEventListener("load", function () {
-                loadImage.src = reader.result;
-            });
+// Listen for changes in the file input
+hiddenInput.addEventListener('change', (event) => {
+    const file = event.target.files[0]; // Get the selected file (first file if multiple allowed)
 
-            reader.readAsDataURL(file); // Read the file as data URL
+    // Check if a file is selected
+    if (file) {
+        const reader = new FileReader();
 
-            // Display the file name and size in the loadImage element
-            loadImage.alt = file.name; // Set the alt attribute to the file name
-            loadImage.title = `File Name: ${file.name}\nFile Size: ${formatFileSize(file.size)}`; // Set the title attribute to include file name and size
-        }
-
-        $('#btnEnhancement').removeClass('hidden')
-        $('#btnUploadImage').addClass('hidden')
-    });
-
-    // Helper function to format file size
-    function formatFileSize(size) {
-        const units = ['B', 'KB', 'MB', 'GB'];
-        let index = 0;
-        while (size >= 1024 && index < units.length - 1) {
-            size /= 1024;
-            index++;
-        }
-        return `${size.toFixed(2)} ${units[index]}`;
-    }
-
-    // Add event listener to the "Clear" button
-    // clearButton.addEventListener("click", function () {
-    //     loadImage.src = "https://via.placeholder.com/290x373" // Reset the src attribute to clear the image
-    //     mamdaniImage.src = "https://via.placeholder.com/224x288"
-    //     sugenoImage.src = "https://via.placeholder.com/224x288"
-    //     tsukamotoImage.src = "https://via.placeholder.com/224x288"
-    //     // mamdaniImage.removeAttribute("src");
-    //     // sugenoImage.removeAttribute("src");
-    //     // tsukamotoImage.removeAttribute("src");
-    //     loadImage.alt = ""; // Clear the alt attribute
-    //     loadImage.title = ""; // Clear the title attribute
-    //     $('#btnUploadImage').removeClass('hidden')
-    //     $('#btnEnhancement').addClass('hidden')
-    //     $('#btnInformation').addClass('hidden')
-    //     $('#btnCalculate').addClass('hidden')
-    // });
-
-    document.getElementById("clear").onclick = (event) => {
-        event.preventDefault(); // Prevent the default form submission
-
-        loadImage.src = "https://via.placeholder.com/290x373" // Reset the src attribute to clear the image
-        loadImage.alt = ""; // Clear the alt attribute
-        loadImage.title = ""; // Clear the title attribute
-
-        // Clear the file input value
-        document.getElementById("hidden-input").value = null;
-
-        $('#card-image-enhancement').addClass('hidden');
-        $('.image-enhancement').empty();
-        $('#btnUploadImage').removeClass('hidden')
-        $('#btnEnhancement').addClass('hidden')
-        $('#btnInformation').addClass('hidden')
-        $('#btnCalculate').addClass('hidden')
-        $('.pnsr').addClass('hidden')
-    };
-
-    // Handle the form submission
-    formImageUpload.addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        showLoadingOverlay(); // Show the loading overlay when the form is submitted
-
-        // Create a new FormData object and append the file input data
-        var formData = new FormData();
-        formData.append("file-image", hiddenInput.files[0]);
-
-        $.ajax({
-            url: "/process_image",
-            type: "POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                // Hide the loading overlay when the form processing is completed
-                hideLoadingOverlay();
-
-                // The rest of your code to handle the response
-                // Enhancement
-                const histogramEnhancement = response.histogram_enhancement
-                const mamdaniEnhancement = response.mamdani_enhancement;
-                const sugenoEnhancement = response.sugeno_enhancement
-                const tsukamotoEnhancement = response.tsukamoto_enhancement
-
-                // Clahe
-                const claheEnhancement = response.clahe_enhancement
-
-                // Combine Enhancement
-                const histogramCombined = response.histogram_encoded_image
-                const mamdaniCombined = response.encoded_image;
-                const sugenoCombined = response.sugeno_encoded_image
-                const tsukamotoCombined = response.tsukamoto_encoded_image
-
-                // alert(enhanced, sugenoEnhanced, tsukamotoEnhanced, histogramEnhanced);
-                console.log(response.clahe_pnsr);
-                // console.log(response.combine_mamdani_pnsr);
-                // console.log(response.combine_sugeno_pnsr);
-                // console.log(response.combine_tsukamoto_pnsr);
-
-                $('#card-image-enhancement').removeClass('hidden');
-
-                $('#combined-image-mamdani').attr("src", mamdaniCombined);
-                $('#combined-image-sugeno').attr("src", sugenoCombined);
-                $('#combined-image-tsukamoto').attr("src", tsukamotoCombined);
-
-                $('.combined-histogram-pnsr').text(response.combine_histogram_pnsr.toFixed(4))
-                $('.combined-mamdani-pnsr').text(response.combine_mamdani_pnsr.toFixed(4))
-                $('.combined-sugeno-pnsr').text(response.combine_sugeno_pnsr.toFixed(4))
-                $('.combined-tsukamoto-pnsr').text(response.combine_tsukamoto_pnsr.toFixed(4))
-                $('.value-pnsr-clahe').text(response.clahe_pnsr.toFixed(4))
-                $('.value-pnsr-histogram').text(response.histogram_pnsr.toFixed(4))
-                $('.value-pnsr-mamdani').text(response.mamdani_pnsr.toFixed(4))
-                $('.value-pnsr-sugeno').text(response.sugeno_pnsr.toFixed(4))
-                $('.value-pnsr-tsukamoto').text(response.tsukamoto_pnsr.toFixed(4))
-
-                $('.image-clahe').attr("src", claheEnhancement);
-                $('#image-histogram').attr("src", histogramEnhancement);
-                $('#image-mamdani').attr("src", mamdaniEnhancement);
-                $('#image-sugeno').attr("src", sugenoEnhancement);
-                $('#image-tsukamoto').attr("src", tsukamotoEnhancement);
-                $('#image-combine-histogram').attr("src", histogramCombined);
-                $('#image-combine-sugeno').attr("src", sugenoCombined);
-                $('#image-combine-mamdani').attr("src", mamdaniCombined);
-                $('#image-combine-tsukamoto').attr("src", tsukamotoCombined);
-
-                $('#btnCalculate').removeClass('hidden')
-                $('#btnCalculate').removeClass('hidden')
-                $('#btnEnhancement').addClass('hidden')
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
+        // Read the file as a data URL and set the src attribute of the loadImage element
+        reader.addEventListener('load', function () {
+            loadImage.src = reader.result;
         });
-    });
 
-    document.getElementById("btnCalculate").onclick = (event) => {
-        event.preventDefault(); // Prevent the default form submission
+        reader.readAsDataURL(file); // Read the file as data URL
 
-        // Calculate PNSR
-        $('.value-pnsr').removeClass('hidden')
-        $('#btnInformation').removeClass('hidden')
+        // Display the file name and size in the loadImage element
+        loadImage.alt = file.name; // Set the alt attribute to the file name
+        loadImage.title = `File Name: ${file.name}\nFile Size: ${formatFileSize(
+            file.size
+        )}`; // Set the title attribute to include file name and size
     }
 
-    // Disable going back using browser history
-    history.pushState(null, null, location.href);
-    window.onpopstate = function (event) {
-        history.go(1);
-    };
-    
-})
+    btnEnhancement.classList.remove('hidden');
+    btnUploadImage.classList.add('hidden')
+});
+
+// Helper function to format file size
+function formatFileSize(size) {
+    const units = ['B', 'KB', 'MB', 'GB'];
+    let index = 0;
+    while (size >= 1024 && index < units.length - 1) {
+        size /= 1024;
+        index++;
+    }
+    return `${size.toFixed(2)} ${units[index]}`;
+}
+
+document.getElementById('clear').onclick = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    loadImage.src = 'https://via.placeholder.com/290x373'; // Reset the src attribute to clear the image
+    loadImage.alt = ''; // Clear the alt attribute
+    loadImage.title = ''; // Clear the title attribute
+
+    // Clear the file input value
+    hiddenInput.value = null;
+
+    cardImageEnhancement.classList.add('hidden')
+    imageEnhancement.forEach((element) => {
+        element.innerHTML = '';
+    });
+
+    btnUploadImage.classList.remove('hidden')
+    btnEnhancement.classList.add('hidden')
+    btnInformation.classList.add('hidden')
+    btnCalculate.classList.add('hidden')
+
+    document.querySelectorAll('.pnsr').forEach((element) => {
+        element.classList.add('hidden');
+    });
+};
+
+btnCalculate.onclick = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Calculate PNSR
+    document.querySelectorAll('.value-pnsr').forEach((element) => {
+        element.classList.remove('hidden');
+    });
+
+    btnInformation.classList.remove('hidden')
+};
+
+function handleSuccess(response) {
+    // Hide the loading overlay when the form processing is completed
+    hideLoadingOverlay();
+
+    // The rest of your code to handle the response
+    // Enhancement
+    const histogramEnhancement = response.data.histogram_enhancement;
+    const mamdaniEnhancement = response.data.mamdani_enhancement;
+    const sugenoEnhancement = response.data.sugeno_enhancement;
+    const tsukamotoEnhancement = response.data.tsukamoto_enhancement;
+
+    // Clahe
+    const claheEnhancement = response.data.clahe_enhancement;
+
+    // Combine Enhancement
+    const histogramCombined = response.data.histogram_encoded_image;
+    const mamdaniCombined = response.data.encoded_image;
+    const sugenoCombined = response.data.sugeno_encoded_image;
+    const tsukamotoCombined = response.data.tsukamoto_encoded_image;
+
+    console.log(response.data.clahe_pnsr);
+
+    document.getElementById('card-image-enhancement').classList.remove('hidden');
+
+    document.getElementById('combined-image-mamdani').src = mamdaniCombined
+    document.getElementById('combined-image-sugeno').src = sugenoCombined
+    document.getElementById('combined-image-tsukamoto').src = tsukamotoCombined
+
+    document.querySelector('.combined-histogram-pnsr').textContent = response.data.combine_histogram_pnsr.toFixed(4);
+    document.querySelectorAll('.combined-mamdani-pnsr').forEach((element) => {
+        element.textContent = response.data.combine_mamdani_pnsr.toFixed(4)
+    })
+
+    document.querySelectorAll('.combined-sugeno-pnsr').forEach((element) => {
+        element.textContent = response.data.combine_sugeno_pnsr.toFixed(4)
+    })
+
+    document.querySelectorAll('.combined-tsukamoto-pnsr').forEach((element) => {
+        element.textContent = response.data.combine_tsukamoto_pnsr.toFixed(4)
+    })
+
+    document.querySelectorAll('.value-pnsr-clahe').forEach((element) => {
+        element.textContent = response.data.clahe_pnsr.toFixed(4)
+    })
+
+    document.querySelector('.value-pnsr-histogram').textContent = response.data.histogram_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-mamdani').textContent = response.data.mamdani_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-sugeno').textContent = response.data.sugeno_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-tsukamoto').textContent = response.data.tsukamoto_pnsr.toFixed(4);
+
+    document.querySelectorAll('.image-clahe').forEach((element) => {
+        element.src = claheEnhancement
+    })
+
+    document.getElementById('image-histogram').src = histogramEnhancement;
+    document.getElementById('image-mamdani').src = mamdaniEnhancement;
+    document.getElementById('image-sugeno').src = sugenoEnhancement;
+    document.getElementById('image-tsukamoto').src = tsukamotoEnhancement;
+    document.getElementById('image-combine-histogram').src = histogramCombined;
+    document.getElementById('image-combine-sugeno').src = sugenoCombined;
+    document.getElementById('image-combine-mamdani').src = mamdaniCombined;
+    document.getElementById('image-combine-tsukamoto').src = tsukamotoCombined;
+
+    document.getElementById('btnCalculate').classList.remove('hidden');
+    document.getElementById('btnEnhancement').classList.add('hidden');
+}
+
+async function postDataToServer(data) {
+    // axios.post('http://127.0.0.1:5000/api/process_image', data)
+    axios.post('http://martz.pythonanywhere.com/api/process_image', data)
+        .then((response) => {
+            // Hide the loading overlay when the form processing is completed
+            hideLoadingOverlay();
+            
+            handleSuccess(response);
+        })
+        .catch(function (error) {
+            console.log(error.message);
+        });
+}
+
+// Handle the form submission
+document.getElementById('form-image-upload').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+    showLoadingOverlay(); // Show the loading overlay when the form is submitted
+
+    // Create a new FormData object and append the file input data
+    const formData = new FormData();
+    formData.append('file-image', hiddenInput.files[0]);
+
+    try {
+        await postDataToServer(formData);
+    } catch (error) {
+        // handleError(error.message);
+        console.log('Error: ', error.message);
+    }
+});
+
+// Disable going back using browser history
+history.pushState(null, null, location.href);
+window.onpopstate = (event) => {
+    history.go(1);
+};
