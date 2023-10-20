@@ -166,7 +166,7 @@ function handleSuccess(response) {
 
 function postDataToServer(data) {
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'http://martz.pythonanywhere.com/api/process_image', true);
+    xhr.open('POST', 'https://martz.pythonanywhere.com/api/process_image', true);
 
     // Define what happens on successful data submission
     xhr.onload = () => {
