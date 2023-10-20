@@ -99,24 +99,25 @@ btnCalculate.onclick = (event) => {
 function handleSuccess(response) {
     // Hide the loading overlay when the form processing is completed
     hideLoadingOverlay();
+    // console.log(response);
 
     // The rest of your code to handle the response
     // Enhancement
-    const histogramEnhancement = response.data.histogram_enhancement;
-    const mamdaniEnhancement = response.data.mamdani_enhancement;
-    const sugenoEnhancement = response.data.sugeno_enhancement;
-    const tsukamotoEnhancement = response.data.tsukamoto_enhancement;
+    const histogramEnhancement = response.histogram_enhancement;
+    const mamdaniEnhancement = response.mamdani_enhancement;
+    const sugenoEnhancement = response.sugeno_enhancement;
+    const tsukamotoEnhancement = response.tsukamoto_enhancement;
 
     // Clahe
-    const claheEnhancement = response.data.clahe_enhancement;
+    const claheEnhancement = response.clahe_enhancement;
 
     // Combine Enhancement
-    const histogramCombined = response.data.histogram_encoded_image;
-    const mamdaniCombined = response.data.encoded_image;
-    const sugenoCombined = response.data.sugeno_encoded_image;
-    const tsukamotoCombined = response.data.tsukamoto_encoded_image;
+    const histogramCombined = response.histogram_encoded_image;
+    const mamdaniCombined = response.encoded_image;
+    const sugenoCombined = response.sugeno_encoded_image;
+    const tsukamotoCombined = response.tsukamoto_encoded_image;
 
-    console.log(response.data.clahe_pnsr);
+    // console.log(response.clahe_pnsr);
 
     document.getElementById('card-image-enhancement').classList.remove('hidden');
 
@@ -124,27 +125,27 @@ function handleSuccess(response) {
     document.getElementById('combined-image-sugeno').src = sugenoCombined
     document.getElementById('combined-image-tsukamoto').src = tsukamotoCombined
 
-    document.querySelector('.combined-histogram-pnsr').textContent = response.data.combine_histogram_pnsr.toFixed(4);
+    document.querySelector('.combined-histogram-pnsr').textContent = response.combine_histogram_pnsr.toFixed(4);
     document.querySelectorAll('.combined-mamdani-pnsr').forEach((element) => {
-        element.textContent = response.data.combine_mamdani_pnsr.toFixed(4)
+        element.textContent = response.combine_mamdani_pnsr.toFixed(4)
     })
 
     document.querySelectorAll('.combined-sugeno-pnsr').forEach((element) => {
-        element.textContent = response.data.combine_sugeno_pnsr.toFixed(4)
+        element.textContent = response.combine_sugeno_pnsr.toFixed(4)
     })
 
     document.querySelectorAll('.combined-tsukamoto-pnsr').forEach((element) => {
-        element.textContent = response.data.combine_tsukamoto_pnsr.toFixed(4)
+        element.textContent = response.combine_tsukamoto_pnsr.toFixed(4)
     })
 
     document.querySelectorAll('.value-pnsr-clahe').forEach((element) => {
-        element.textContent = response.data.clahe_pnsr.toFixed(4)
+        element.textContent = response.clahe_pnsr.toFixed(4)
     })
 
-    document.querySelector('.value-pnsr-histogram').textContent = response.data.histogram_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-mamdani').textContent = response.data.mamdani_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-sugeno').textContent = response.data.sugeno_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-tsukamoto').textContent = response.data.tsukamoto_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-histogram').textContent = response.histogram_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-mamdani').textContent = response.mamdani_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-sugeno').textContent = response.sugeno_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-tsukamoto').textContent = response.tsukamoto_pnsr.toFixed(4);
 
     document.querySelectorAll('.image-clahe').forEach((element) => {
         element.src = claheEnhancement
@@ -163,18 +164,32 @@ function handleSuccess(response) {
     document.getElementById('btnEnhancement').classList.add('hidden');
 }
 
-async function postDataToServer(data) {
-    // axios.post('http://127.0.0.1:5000/api/process_image', data)
-    axios.post('http://martz.pythonanywhere.com/api/process_image', data)
-        .then((response) => {
-            // Hide the loading overlay when the form processing is completed
-            hideLoadingOverlay();
-            
+function postDataToServer(data) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://martz.pythonanywhere.com/api/process_image', true);
+
+    // Define what happens on successful data submission
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            // The request was successful, handle the response
+            const response = JSON.parse(xhr.responseText);
             handleSuccess(response);
-        })
-        .catch(function (error) {
-            console.log(error.message);
-        });
+        } else {
+            // The request failed
+            console.error('Request failed. Status: ' + xhr.status);
+        }
+    };
+
+    // Handle errors
+    xhr.onerror = () => {
+        console.error('Network error occurred');
+    };
+
+    // Convert data to JSON format (if needed)
+    // var jsonData = JSON.stringify(data);
+
+    // Send the request
+    xhr.send(data);
 }
 
 // Handle the form submission
