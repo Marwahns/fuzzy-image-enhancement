@@ -1,0 +1,8 @@
+{
+    "builds": [
+        {
+            "src": "node_modules/**",
+            "use": "@vercel/node"
+        }
+    ]
+}
