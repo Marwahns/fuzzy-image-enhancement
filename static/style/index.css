@@ -55,7 +55,6 @@ body {
 
 .upload-image {
     width: 320px;
-    /* margin-top: 2.2rem; */
 }
 
 .load-image {
@@ -63,7 +62,6 @@ body {
     height: 384px;
     border-radius: 24px;
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    /* margin-top: 1.5rem; 24px */
     margin-top: .9rem; /* 24px */
     margin-left: 2rem; /* 32px */
 }
@@ -110,7 +108,6 @@ body {
 }
 
 .btnEnhancement:hover {
-    /* background-color: #1e40af; */
     cursor: pointer;
 }
 
@@ -168,7 +165,6 @@ body {
 #clear:hover {
     cursor: pointer;
     background-color: rgba(220, 38, 38, 0.8);
-    /* transition: background-color 0.3s; */
 }
 
 #clear:focus {
@@ -185,7 +181,6 @@ body {
     position: relative;
     width: 873px;
     height: 508px;
-    /* margin-top: 5.6rem; 90px */
     margin-top: 4.3rem; /* 76.5px */
     background-image: linear-gradient(to bottom right, white, #F5F5F5);
     border-radius: 35.31px;
@@ -264,14 +259,12 @@ body {
 }
 
 #btnInformation:hover {
-    /* background-color: #1c4ca9; */
     background-image: linear-gradient(to right, #00897b, #1e40af);
     cursor: pointer;
 }
 
 #btnInformation:focus {
     background-image: linear-gradient(to right, #1e40af, #00897b);
-    /* background-color: #1c4ca9; */
     outline: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
@@ -295,14 +288,12 @@ body {
 }
 
 #btnCalculate:hover {
-    /* background-color: #166534; */
     background-image: linear-gradient(to right, #4caf50, #66bb6a);
     cursor: pointer;
 }
 
 #btnCalculate:focus {
     background-image: linear-gradient(to right, #66bb6a, #4caf50);
-    /* background-color: #86efac; */
     outline: none;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
@@ -328,21 +319,36 @@ body {
 }
 
 .container-image-mamdani-2 {
-    background-color: #ffeb3b;
     border-radius: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#combined-image-mamdani {
+    width: inherit; /* 224px */
+    height: inherit; /* 288px */
+    border-radius: 1.5rem; /* 24px */
 }
 
 .container-image-sugeno-2 {
-    background-color: #ff4d94;
     border-radius: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#combined-image-sugeno {
+    width: inherit; /* 224px */
+    height: inherit; /* 288px */
+    border-radius: 1.5rem; /* 24px */
+}
+
 .container-image-tsukamoto-2 {
-    background-color: #d4edda;
     border-radius: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#combined-image-tsukamoto {
+    width: inherit; /* 224px */
+    height: inherit; /* 288px */
+    border-radius: 1.5rem; /* 24px */
 }
 
 .jenis-fuzzy {
@@ -361,10 +367,19 @@ body {
     text-align: center;
     margin-top: 0.6875rem; /* 11px */
 }
-
 /** -------- END ENHANCEMENT -------- */
 
 /** -------- RESPONSIVE BREAKPOINT -------- */
+@media (min-width: 1300px) {
+    #upload-image {
+        margin-top: 2.2rem;
+    }
+
+    .container-enhancement {
+        margin-top: 6.5rem;
+    }
+}
+
 @media (min-width: 991px) and (max-width: 1200px) {
     .upload-image {
         width: 320px;
@@ -428,8 +443,6 @@ body {
         display: flex;
         justify-content: center;
         padding: 0 1rem 0.5rem;
-        /* padding-left: -0.75rem;
-        padding-right: -0.75rem; */
     }
 
     .card-image-enhancement {
@@ -450,7 +463,6 @@ body {
     }
 
     #enhancement {
-        /* padding: 0 0.3125rem; 0 5px */
         padding: 0 0.3125rem 0.15265rem; /* 0 5px 2.5px*/
     }
 
