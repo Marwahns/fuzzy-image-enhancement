@@ -124,27 +124,27 @@ function handleSuccess(response) {
     document.getElementById('combined-image-sugeno').src = sugenoCombined
     document.getElementById('combined-image-tsukamoto').src = tsukamotoCombined
 
-    document.querySelector('.combined-histogram-pnsr').textContent = response.combine_histogram_pnsr.toFixed(4);
+    document.querySelector('.combined-histogram-pnsr').textContent = response.combine_histogram_pnsr;
     document.querySelectorAll('.combined-mamdani-pnsr').forEach((element) => {
-        element.textContent = response.combine_mamdani_pnsr.toFixed(4)
+        element.textContent = response.combine_mamdani_pnsr;
     })
 
     document.querySelectorAll('.combined-sugeno-pnsr').forEach((element) => {
-        element.textContent = response.combine_sugeno_pnsr.toFixed(4)
+        element.textContent = response.combine_sugeno_pnsr;
     })
 
     document.querySelectorAll('.combined-tsukamoto-pnsr').forEach((element) => {
-        element.textContent = response.combine_tsukamoto_pnsr.toFixed(4)
+        element.textContent = response.combine_tsukamoto_pnsr;
     })
 
     document.querySelectorAll('.value-pnsr-clahe').forEach((element) => {
-        element.textContent = response.clahe_pnsr.toFixed(4)
+        element.textContent = response.clahe_pnsr;
     })
 
-    document.querySelector('.value-pnsr-histogram').textContent = response.histogram_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-mamdani').textContent = response.mamdani_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-sugeno').textContent = response.sugeno_pnsr.toFixed(4);
-    document.querySelector('.value-pnsr-tsukamoto').textContent = response.tsukamoto_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-histogram').textContent = response.histogram_pnsr;
+    document.querySelector('.value-pnsr-mamdani').textContent = response.mamdani_pnsr;
+    document.querySelector('.value-pnsr-sugeno').textContent = response.sugeno_pnsr;
+    document.querySelector('.value-pnsr-tsukamoto').textContent = response.tsukamoto_pnsr;
 
     document.querySelectorAll('.image-clahe').forEach((element) => {
         element.src = claheEnhancement
@@ -163,7 +163,7 @@ function handleSuccess(response) {
     document.getElementById('btnEnhancement').classList.add('hidden');
 }
 
-function postDataToServer(data) {
+async function postDataToServer(data) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'https://martz.pythonanywhere.com/api/process_image', true);
 
