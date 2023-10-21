@@ -15,4 +15,4 @@ The website is a development of a previous project created for the final exam of
 ### Links
 Pages: https://fuzzy-image-enhancement.vercel.app/
 
-Server: in process
+Server: https://martz.pythonanywhere.com/
