@@ -102,21 +102,21 @@ function handleSuccess(response) {
 
     // The rest of your code to handle the response
     // Enhancement
-    const histogramEnhancement = response.histogram_enhancement;
-    const mamdaniEnhancement = response.mamdani_enhancement;
-    const sugenoEnhancement = response.sugeno_enhancement;
-    const tsukamotoEnhancement = response.tsukamoto_enhancement;
+    const histogramEnhancement = response.data.histogram_enhancement;
+    const mamdaniEnhancement = response.data.mamdani_enhancement;
+    const sugenoEnhancement = response.data.sugeno_enhancement;
+    const tsukamotoEnhancement = response.data.tsukamoto_enhancement;
 
     // Clahe
-    const claheEnhancement = response.clahe_enhancement;
+    const claheEnhancement = response.data.clahe_enhancement;
 
     // Combine Enhancement
-    const histogramCombined = response.histogram_encoded_image;
-    const mamdaniCombined = response.encoded_image;
-    const sugenoCombined = response.sugeno_encoded_image;
-    const tsukamotoCombined = response.tsukamoto_encoded_image;
+    const histogramCombined = response.data.histogram_encoded_image;
+    const mamdaniCombined = response.data.encoded_image;
+    const sugenoCombined = response.data.sugeno_encoded_image;
+    const tsukamotoCombined = response.data.tsukamoto_encoded_image;
 
-    // console.log(response.clahe_pnsr);
+    // console.log(response.data.clahe_pnsr);
 
     document.getElementById('card-image-enhancement').classList.remove('hidden');
 
@@ -124,27 +124,27 @@ function handleSuccess(response) {
     document.getElementById('combined-image-sugeno').src = sugenoCombined
     document.getElementById('combined-image-tsukamoto').src = tsukamotoCombined
 
-    document.querySelector('.combined-histogram-pnsr').textContent = response.combine_histogram_pnsr;
+    document.querySelector('.combined-histogram-pnsr').textContent = response.data.combine_histogram_pnsr.toFixed(4);
     document.querySelectorAll('.combined-mamdani-pnsr').forEach((element) => {
-        element.textContent = response.combine_mamdani_pnsr;
+        element.textContent = response.data.combine_mamdani_pnsr.toFixed(4);
     })
 
     document.querySelectorAll('.combined-sugeno-pnsr').forEach((element) => {
-        element.textContent = response.combine_sugeno_pnsr;
+        element.textContent = response.data.combine_sugeno_pnsr.toFixed(4);
     })
 
     document.querySelectorAll('.combined-tsukamoto-pnsr').forEach((element) => {
-        element.textContent = response.combine_tsukamoto_pnsr;
+        element.textContent = response.data.combine_tsukamoto_pnsr.toFixed(4);
     })
 
     document.querySelectorAll('.value-pnsr-clahe').forEach((element) => {
-        element.textContent = response.clahe_pnsr;
+        element.textContent = response.data.clahe_pnsr.toFixed(4);
     })
 
-    document.querySelector('.value-pnsr-histogram').textContent = response.histogram_pnsr;
-    document.querySelector('.value-pnsr-mamdani').textContent = response.mamdani_pnsr;
-    document.querySelector('.value-pnsr-sugeno').textContent = response.sugeno_pnsr;
-    document.querySelector('.value-pnsr-tsukamoto').textContent = response.tsukamoto_pnsr;
+    document.querySelector('.value-pnsr-histogram').textContent = response.data.histogram_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-mamdani').textContent = response.data.mamdani_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-sugeno').textContent = response.data.sugeno_pnsr.toFixed(4);
+    document.querySelector('.value-pnsr-tsukamoto').textContent = response.data.tsukamoto_pnsr.toFixed(4);
 
     document.querySelectorAll('.image-clahe').forEach((element) => {
         element.src = claheEnhancement
@@ -164,31 +164,16 @@ function handleSuccess(response) {
 }
 
 async function postDataToServer(data) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://martz.pythonanywhere.com/api/process_image', true);
-
-    // Define what happens on successful data submission
-    xhr.onload = () => {
-        if (xhr.status === 200) {
-            // The request was successful, handle the response
-            const response = JSON.parse(xhr.responseText);
-            handleSuccess(response);
-        } else {
-            // The request failed
-            console.error('Request failed. Status: ' + xhr.status);
-        }
-    };
-
-    // Handle errors
-    xhr.onerror = () => {
-        console.error('Network error occurred');
-    };
-
-    // Convert data to JSON format (if needed)
-    // var jsonData = JSON.stringify(data);
-
-    // Send the request
-    xhr.send(data);
+   // axios.post('http://127.0.0.1:5000/api/process_image', data)
+   axios.post("https://martz.pythonanywhere.com/api/process_image", data)
+   .then((response) => {
+       // Hide the loading overlay when the form processing is completed
+       hideLoadingOverlay();
+       handleSuccess(response);
+    })
+    .catch(function (error) {
+        console.log(error.message);
+    });
 }
 
 // Handle the form submission
