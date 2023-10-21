@@ -5,17 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description"
-        content="Welcome to our student project image enhancement platform! Upload your images and apply fuzzy image enhancement techniques to improve overall quality and highlight important features.">
-    <meta name="keywords"
-        content="Image enhancement, Fuzzy image enhancement, Student project, Improve image quality, Contrast enhancement, Histogram Equalization, Fuzzy Sugeno, Fuzzy Mamdani, Fuzzy Tsukamoto, Sharpness enhancement, enhancement, Noise reduction, Blur reduction, Median Filter, Discrete Cosine Transform, 3-Channel, OpenCV, Python, Medical image enhancement, Adaptive threshold">
+    <meta name="description" content="Welcome to our student project image enhancement platform! Upload your images and apply fuzzy image enhancement techniques to improve overall quality and highlight important features.">
+    <meta name="keywords" content="Image enhancement, Fuzzy image enhancement, Student project, Improve image quality, Contrast enhancement, Histogram Equalization, Fuzzy Sugeno, Fuzzy Mamdani, Fuzzy Tsukamoto, Sharpness enhancement, enhancement, Noise reduction, Blur reduction, Median Filter, Discrete Cosine Transform, 3-Channel, OpenCV, Python, Medical image enhancement, Adaptive threshold">
     <meta name="author" content="Marwah">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Enhance Your Images with Our AI-Powered Image Enhancement Platform">
-    <meta property="og:description"
-        content="Enhance your images with our AI-powered image enhancement platform! Upload your own images and apply fuzzy image enhancement techniques to generate enhanced versions that highlight important features and improve overall image quality. Try it out now and see the difference!">
+    <meta property="og:description" content="Enhance your images with our AI-powered image enhancement platform! Upload your own images and apply fuzzy image enhancement techniques to generate enhanced versions that highlight important features and improve overall image quality. Try it out now and see the difference!">
     <meta property=" og:url" content="Homepage_URL">
     <meta property="og:type" content="website">
 
@@ -28,6 +25,7 @@
     <link rel="stylesheet" href="./static/style/header.css">
     <link rel="stylesheet" href="./static/style/dark_mode.css">
     <link rel="stylesheet" href="./static/style/load.css">
+    <link rel="stylesheet" href="./static/style/popup.css">
     <link rel="stylesheet" href="./static/style/index.css">
 </head>
 
@@ -140,9 +138,7 @@
                                                 </div>
                                                 <div class="jenis-fuzzy">Mamdani</div>
                                                 <div class="value-fuzzy value-pnsr hidden">
-                                                    <span class="block pnsr">PNSR :<span class="combined-mamdani-pnsr">
-                                                            Value
-                                                            PNSR</span></span>
+                                                    <span class="block pnsr">PNSR :<span class="combined-mamdani-pnsr"> Value PNSR</span></span>
                                                 </div>
                                             </div>
 
@@ -150,15 +146,12 @@
                                             <div class="container-image-sugeno" data-tilt data-tilt-glare>
                                                 <div class="container-image-sugeno-2">
                                                     <div class="image-enhancement">
-                                                        <img id="combined-image-sugeno"
-                                                            class="combined-image-sugeno"></img>
+                                                        <img id="combined-image-sugeno" class="combined-image-sugeno"></img>
                                                     </div>
                                                 </div>
                                                 <div class="jenis-fuzzy">Sugeno</div>
                                                 <div class="value-fuzzy value-pnsr hidden">
-                                                    <span class="block pnsr">PNSR :<span class="combined-sugeno-pnsr">
-                                                            Value
-                                                            PNSR</span></span>
+                                                    <span class="block pnsr">PNSR :<span class="combined-sugeno-pnsr"> Value PNSR</span></span>
                                                 </div>
                                             </div>
 
@@ -166,15 +159,12 @@
                                             <div class="container-image-tsukamoto" data-tilt data-tilt-glare>
                                                 <div class="container-image-tsukamoto-2">
                                                     <div class="image-enhancement">
-                                                        <img id="combined-image-tsukamoto"
-                                                            class="combined-image-tsukamoto"></img>
+                                                        <img id="combined-image-tsukamoto" class="combined-image-tsukamoto"></img>
                                                     </div>
                                                 </div>
                                                 <div class="jenis-fuzzy">Tsukamoto</div>
                                                 <div class="value-fuzzy value-pnsr hidden">
-                                                    <span class="block pnsr">PNSR :<span
-                                                            class="combined-tsukamoto-pnsr"> Value
-                                                            PNSR</span></span>
+                                                    <span class="block pnsr">PNSR :<span class="combined-tsukamoto-pnsr"> Value PNSR</span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -199,13 +189,10 @@
                         <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-700">More Information
                             </h3>
-                            <button type="button"
-                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-red-600 dark:hover:text-white"
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-red-600 dark:hover:text-white"
                                 data-modal-hide="defaultModal">
-                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                    viewBox="0 0 14 14">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
@@ -220,8 +207,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Clahe</span>
                                     <img class="image-clahe" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value
-                                            PNSR Clahe</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value PNSR Clahe</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>+</span>
                             </div>
@@ -230,9 +216,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Histogram</span>
                                     <img id="image-histogram" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-histogram">Value
-                                            PNSR
-                                            Histogram</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-histogram">Value PNSR Histogram</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>=</span>
                             </div>
@@ -241,10 +225,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Result</span>
                                     <img id="image-combine-histogram" width='100' height='200'>
-                                    <span class='text-sm text-gray-500'>PNSR : <span
-                                            class="combined-histogram-pnsr">Value
-                                            PNSR Combined
-                                            Histogram</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-histogram-pnsr">Value PNSR Combined Histogram</span></span>
                                 </div>
                             </div>
                         </div>
@@ -256,8 +237,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Clahe</span>
                                     <img class="image-clahe" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value
-                                            PNSR Clahe</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value PNSR Clahe</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>+</span>
                             </div>
@@ -266,9 +246,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Mamdani</span>
                                     <img id="image-mamdani" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-mamdani">Value
-                                            PNSR
-                                            Mamdani</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-mamdani">Value PNSR Mamdani</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>=</span>
                             </div>
@@ -277,9 +255,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Result</span>
                                     <img id="image-combine-mamdani" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-mamdani-pnsr">Value
-                                            PNSR Combined
-                                            Mamdani</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-mamdani-pnsr">Value PNSR Combined Mamdani</span></span>
                                 </div>
                             </div>
                         </div>
@@ -291,8 +267,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Clahe</span>
                                     <img class="image-clahe" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value
-                                            PNSR Clahe</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value PNSR Clahe</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>+</span>
                             </div>
@@ -301,8 +276,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Sugeno</span>
                                     <img id="image-sugeno" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-sugeno">Value
-                                            PNSR Sugeno</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-sugeno">Value PNSR Sugeno</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>=</span>
                             </div>
@@ -311,10 +285,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Result</span>
                                     <img id="image-combine-sugeno" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-sugeno-pnsr">Value
-                                            PNSR
-                                            Combined
-                                            Sugeno</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-sugeno-pnsr">Value PNSR Combined Sugeno</span></span>
                                 </div>
                             </div>
                         </div>
@@ -326,8 +297,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Clahe</span>
                                     <img class="image-clahe" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value
-                                            PNSR Clahe</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-clahe">Value PNSR Clahe</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>+</span>
                             </div>
@@ -336,9 +306,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Tsukamoto</span>
                                     <img id="image-tsukamoto" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-tsukamoto">Value
-                                            PNSR
-                                            Tsukamoto</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="value-pnsr-tsukamoto">Value PNSR Tsukamoto</span></span>
                                 </div>
                                 <span class='text-white text-lg align-middle mx-3'>=</span>
                             </div>
@@ -347,10 +315,7 @@
                                 <div class='flex flex-col items-center justify-center'>
                                     <span class='text-sm text-gray-500'>Result</span>
                                     <img id="image-combine-tsukamoto" width='100' height='200' alt="Image">
-                                    <span class='text-sm text-gray-500'>PNSR : <span
-                                            class="combined-tsukamoto-pnsr">Value
-                                            PNSR Combined
-                                            Tsukamoto</span></span>
+                                    <span class='text-sm text-gray-500'>PNSR : <span class="combined-tsukamoto-pnsr">Value PNSR Combined Tsukamoto</span></span>
                                 </div>
                             </div>
                         </div>
@@ -376,6 +341,27 @@
                 </div>
             </div>
         </section>
+
+        <!-- SECTION POP UP -->
+        <section class="container-popup-s-n">
+            <div class="container-popup-s-n-1">
+                <div class="isi-popup-s-n">
+                    <div class="container-popup-1">
+                        <div class="" id="container-popup-2">
+                            <div class="popup" id="popup">
+                                <div class="container-img-popup">
+                                    <img src="./static/images/tick-error.png" alt="tick" id="img-popup" />
+                                </div>
+                                <h2 id="title-popup">Failed</h2>
+                                <p id="desc-popup"></p>
+                                <button type="submit" id="btnClose">OKE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECTION POP UP -->
     </main>
 
     <!-- AXIOS -->
@@ -393,6 +379,7 @@
     <!-- Custom Scripts -->
     <script type="text/javascript" src="./static/script/header.js"></script>
     <script type="text/javascript" src="./static/script/dark_mode.js"></script>
+    <script type="text/javascript" src="./static/script/popup.js"></script>
     <script type="text/javascript" src="./static/script/index.js"></script>
 </body>
 

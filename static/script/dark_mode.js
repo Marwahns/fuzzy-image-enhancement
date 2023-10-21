@@ -26,7 +26,7 @@ const backgroundImage = {
 const darkBtn = document.getElementById('darkbtn');
 const body = document.body
 const isDarkMode = localStorage.getItem('darkMode') === 'enabled'
-const styleSheet = document.styleSheets[1]; // index stylesheet
+const styleSheet = document.styleSheets[1]; /* index stylesheet */
 const rules = styleSheet.cssRules || styleSheet.rules;
 const mediaQuery = window.matchMedia('(max-width: 480px)')
 const mediaQuery2 = window.matchMedia('(min-width: 481px)')

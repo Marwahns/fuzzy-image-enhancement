@@ -1,0 +1,237 @@
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/**-------- SECTION POP UP -------- */
+/**-------- MAIN CONTAINER POP UP -------- */
+.container-popup-s-n {
+    display: block;
+}
+
+.container-popup-s-n-1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.isi-popup-s-n {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    text-align: center;
+    justify-content: center;
+}
+
+.container-popup-1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/**-------- END MAIN CONTAINER POP UP -------- */
+
+.container-popup-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 51;
+    backdrop-filter: blur(5px); /* Blur effect on the background */
+}
+
+.popup {
+    width: 400px;
+    background: #fff;
+    border-radius: 6px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.container-img-popup {  
+    display: flex;
+    justify-content: center;
+}
+
+.popup img {
+    width: 100px;
+    margin-top: -50px;
+    border-radius: 50px;
+    box-shadow: 0 2x 5px rgb(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 10px 0 10px;
+    color: #ff0000;
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background: #0d6efd;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgb(0, 0, 0, 0.2);
+}
+
+.hidden {
+    visibility: hidden;
+}
+/**-------- END SECTION POP UP -------- */
+
+/** -------- RESPONSIVE BREAKPOINT -------- */
+@media screen and (max-width: 991px) {
+    .popup p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .popup {
+        width: 390px;
+    }
+
+    .popup h2 {
+        font-size: 28px;
+        margin: 10px 0 10px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .popup {
+        width: 360px;
+    }
+
+    .popup h2 {
+        font-size: 24px;
+    }
+
+    .popup button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .popup {
+        width: 330px;
+    }
+
+    .popup h2 {
+        font-size: 28px;
+    }
+
+    .popup p {
+        font-size: 16px;
+    }
+
+    .popup button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .popup {
+        width: 330px;
+    }
+
+    .popup h2 {
+        font-size: 28px;
+    }
+
+    .popup p {
+        font-size: 16px;
+    }
+
+    .popup button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .popup {
+        width: 300px;
+    }
+
+    .popup h2 {
+        font-size: 24px;
+    }
+
+    .popup p {
+        font-size: 14px;
+    }
+
+    .popup button {
+        margin-top: 35px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .popup {
+        width: 270px;
+    }
+
+    .popup h2 {
+        font-size: 22px;
+        margin: 0 0 10px;
+    }
+
+    .popup p {
+        font-size: 14px;
+    }
+
+    .popup button {
+        margin-top: 35px;
+    }
+}
+
+@media screen and (max-width: 319px) {
+    .popup {
+        width: 220px;
+    }
+
+    .popup h2 {
+        font-size: 20px;
+    }
+
+    .popup p {
+        font-size: 12px;
+    }
+
+    .popup button {
+        margin-top: 35px;
+    }
+}
+/** -------- END RESPONSIVE BREAKPOINT -------- */

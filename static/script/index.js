@@ -4,6 +4,7 @@ const hiddenInput = document.getElementById('hidden-input');
 const loadImage = document.getElementById('load-image');
 
 const btnEnhancement = document.getElementById('btnEnhancement')
+const btnClear = document.getElementById('clear')
 const loadingOverlay = document.getElementById('loading-overlay')
 
 const cardImageEnhancement = document.getElementById('card-image-enhancement')
@@ -60,7 +61,7 @@ function formatFileSize(size) {
     return `${size.toFixed(2)} ${units[index]}`;
 }
 
-document.getElementById('clear').onclick = (event) => {
+btnClear.onclick = (event) => {
     event.preventDefault(); // Prevent the default form submission
 
     loadImage.src = 'https://via.placeholder.com/290x373'; // Reset the src attribute to clear the image
@@ -83,6 +84,8 @@ document.getElementById('clear').onclick = (event) => {
     document.querySelectorAll('.pnsr').forEach((element) => {
         element.classList.add('hidden');
     });
+
+    location.reload(true); // The page will refresh and force a resource retrieval from the server
 };
 
 btnCalculate.onclick = (event) => {
@@ -163,7 +166,7 @@ function handleSuccess(response) {
     document.getElementById('btnEnhancement').classList.add('hidden');
 }
 
-async function postDataToServer(data) {
+function postDataToServer(data) {
    // axios.post('http://127.0.0.1:5000/api/process_image', data)
    axios.post("https://martz.pythonanywhere.com/api/process_image", data)
    .then((response) => {
@@ -171,13 +174,14 @@ async function postDataToServer(data) {
        hideLoadingOverlay();
        handleSuccess(response);
     })
-    .catch(function (error) {
-        console.log(error.message);
+    .catch((error) => {
+        hideLoadingOverlay();
+        openPopup('Server is being maintained')
     });
 }
 
 // Handle the form submission
-document.getElementById('form-image-upload').addEventListener('submit', async (e) => {
+document.getElementById('form-image-upload').addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent the default form submission
     showLoadingOverlay(); // Show the loading overlay when the form is submitted
 
@@ -186,10 +190,9 @@ document.getElementById('form-image-upload').addEventListener('submit', async (e
     formData.append('file-image', hiddenInput.files[0]);
 
     try {
-        await postDataToServer(formData);
+        postDataToServer(formData);
     } catch (error) {
-        // handleError(error.message);
-        console.log('Error: ', error.message);
+        openPopup('Unable to process images')
     }
 });
 
